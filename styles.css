@@ -1,0 +1,422 @@
+/* Casio fx-570 Mobile Calculator Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0d1117;
+  color: #e6edf3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.calculator-container {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(145deg, #1c232a, #26303a);
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 2px 3px rgba(255, 255, 255, 0.1);
+  padding: 16px 14px 20px 14px;
+  border: 1px solid #303a44;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Brand Bar */
+.calc-brand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 6px;
+}
+
+.brand-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.brand-model {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #8b949e;
+  letter-spacing: 0.8px;
+}
+
+.brand-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.vpam-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  background-color: #21262d;
+  color: #d29922;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #363b42;
+  letter-spacing: 0.5px;
+}
+
+.solar-panel {
+  display: flex;
+  gap: 2px;
+  background: #12100e;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #483d30;
+}
+
+.solar-cell {
+  width: 12px;
+  height: 14px;
+  background: linear-gradient(180deg, #3a2215 0%, #1a0f09 100%);
+  border-radius: 1px;
+}
+
+/* Screen Section */
+.screen-wrapper {
+  background: #a3b899;
+  background: linear-gradient(180deg, #9bb091 0%, #a8bd9d 100%);
+  border: 4px solid #161b22;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4);
+  color: #141f10;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.screen-header {
+  display: flex;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  min-height: 14px;
+  border-bottom: 1px dashed rgba(20, 31, 16, 0.25);
+  padding-bottom: 2px;
+}
+
+.indicator {
+  opacity: 0.15;
+  color: #141f10;
+}
+
+.indicator.active {
+  opacity: 1;
+}
+
+.screen-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 72px;
+  padding-top: 4px;
+}
+
+.screen-input-line {
+  font-size: 1.1rem;
+  font-weight: 700;
+  word-break: break-all;
+  white-space: pre-wrap;
+  min-height: 28px;
+  line-height: 1.2;
+}
+
+.screen-result-line {
+  font-size: 1.45rem;
+  font-weight: 800;
+  text-align: right;
+  word-break: break-all;
+  min-height: 32px;
+}
+
+/* Control Row & Replay Pad */
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.btn-group-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 72px;
+}
+
+.btn-shift {
+  background: linear-gradient(180deg, #b08821 0%, #856312 100%);
+  color: #fff;
+}
+
+.btn-alpha {
+  background: linear-gradient(180deg, #a43843 0%, #7d262f 100%);
+  color: #fff;
+}
+
+.btn-mode, .btn-on {
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  color: #fff;
+}
+
+/* Directional Replay Pad */
+.replay-pad {
+  width: 110px;
+  height: 110px;
+  background: #111827;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  border: 2px solid #374151;
+}
+
+.replay-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.replay-btn:active {
+  color: #38bdf8;
+}
+
+.replay-up { top: 6px; left: 38px; width: 34px; height: 26px; }
+.replay-down { bottom: 6px; left: 38px; width: 34px; height: 26px; }
+.replay-left { top: 38px; left: 6px; width: 26px; height: 34px; }
+.replay-right { top: 38px; right: 6px; width: 26px; height: 34px; }
+.replay-center {
+  top: 35px;
+  left: 28px;
+  width: 54px;
+  height: 40px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #d1d5db;
+}
+
+/* Key Matrix Styling */
+.keypad-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.numeric-keypad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 2px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+  transition: transform 0.05s, box-shadow 0.05s;
+  position: relative;
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn-fn {
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  color: #f3f4f6;
+}
+
+.btn-num {
+  background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
+  color: #ffffff;
+}
+
+.btn-op {
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  color: #f3f4f6;
+}
+
+.btn-del, .btn-ac {
+  background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%);
+  color: #ffffff;
+}
+
+.btn-equals {
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+}
+
+/* Labels inside buttons */
+.main-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.sub-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  line-height: 1;
+  position: absolute;
+}
+
+.sub-label.yellow {
+  top: 2px;
+  left: 4px;
+  color: #facc15;
+}
+
+.sub-label.red {
+  top: 2px;
+  right: 4px;
+  color: #f87171;
+}
+
+/* Utilities Bar */
+.utils-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.util-btn {
+  flex: 1;
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #9ca3af;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 6px 2px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.util-btn:active {
+  background: #374151;
+  color: #ffffff;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #1e293b;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+}
+
+.modal-header h3 {
+  font-size: 0.95rem;
+  color: #38bdf8;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-item {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-item:hover, .menu-item:active {
+  background: #0284c7;
+  border-color: #38bdf8;
+}
+
+.menu-item .key-num {
+  background: #0f172a;
+  color: #facc15;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 800;
+}

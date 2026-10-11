@@ -1,0 +1,10 @@
+{
+  "name": "Kalkulator Saintifik Casio fx-570",
+  "short_name": "fx-570 App",
+  "description": "Aplikasi Mobile Kalkulator Saintifik Casio fx-570ES PLUS / ClassWiz",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#1a2228",
+  "orientation": "portrait"
+}

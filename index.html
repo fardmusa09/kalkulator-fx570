@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a2228">
+  <title>Kalkulator Saintifik Casio fx-570 Mobile App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="calculator-container">
+    <!-- Calculator Header / Brand -->
+    <div class="calc-brand">
+      <div class="brand-left">
+        <span class="brand-name">CASIO</span>
+        <span class="brand-model">fx-570ES PLUS</span>
+      </div>
+      <div class="brand-right">
+        <span class="vpam-badge">NATURAL-V.P.A.M.</span>
+        <div class="solar-panel">
+          <div class="solar-cell"></div>
+          <div class="solar-cell"></div>
+          <div class="solar-cell"></div>
+          <div class="solar-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen Display Section -->
+    <div class="screen-wrapper">
+      <div class="screen-header">
+        <span id="ind-shift" class="indicator">S</span>
+        <span id="ind-alpha" class="indicator">A</span>
+        <span id="ind-math" class="indicator active">MATH</span>
+        <span id="ind-angle" class="indicator active">DEG</span>
+        <span id="ind-mode" class="indicator">COMP</span>
+        <span id="ind-fix" class="indicator">NORM1</span>
+        <span id="ind-mem" class="indicator">M</span>
+      </div>
+      <div class="screen-body">
+        <div id="screen-input" class="screen-input-line">0</div>
+        <div id="screen-result" class="screen-result-line">0</div>
+      </div>
+    </div>
+
+    <!-- Modal Dialogs for Mode Selection, Constants, Conversions, History -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">Pilih Mod / Menu</h3>
+          <button id="modal-close-btn" class="modal-close">&times;</button>
+        </div>
+        <div id="modal-body" class="modal-body">
+          <!-- Dynamic Menu Content -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary Control Buttons (Top Row) -->
+    <div class="control-row">
+      <div class="btn-group-top">
+        <button id="btn-shift" class="btn btn-shift" data-action="shift">
+          <span class="sub-label yellow">SHIFT</span>
+          <span class="main-label">SHIFT</span>
+        </button>
+        <button id="btn-alpha" class="btn btn-alpha" data-action="alpha">
+          <span class="sub-label red">ALPHA</span>
+          <span class="main-label">ALPHA</span>
+        </button>
+      </div>
+
+      <!-- Directional Replay Pad -->
+      <div class="replay-pad">
+        <button class="replay-btn replay-up" data-action="replay-up">&#9650;</button>
+        <button class="replay-btn replay-left" data-action="replay-left">&#9664;</button>
+        <button class="replay-btn replay-center" data-action="replay-center">REPLAY</button>
+        <button class="replay-btn replay-right" data-action="replay-right">&#9654;</button>
+        <button class="replay-btn replay-down" data-action="replay-down">&#9660;</button>
+      </div>
+
+      <div class="btn-group-top">
+        <button id="btn-mode" class="btn btn-mode" data-action="mode">
+          <span class="sub-label yellow">SETUP</span>
+          <span class="main-label">MODE</span>
+        </button>
+        <button id="btn-on" class="btn btn-on" data-action="on">
+          <span class="sub-label yellow">OFF</span>
+          <span class="main-label">ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Function Key Matrix -->
+    <div class="keypad-matrix">
+      <!-- Row 1 -->
+      <button class="btn btn-fn" data-code="X_INV" data-shift="ABS" data-alpha="A">
+        <span class="sub-label yellow">Abs</span>
+        <span class="main-label">x⁻¹</span>
+        <span class="sub-label red">A</span>
+      </button>
+      <button class="btn btn-fn" data-code="DIFF" data-shift="INTEG" data-alpha="B">
+        <span class="sub-label yellow">∫dx</span>
+        <span class="main-label">d/dx</span>
+        <span class="sub-label red">B</span>
+      </button>
+      <button class="btn btn-fn" data-code="FRAC" data-shift="MIXED" data-alpha="C">
+        <span class="sub-label yellow">a b/c</span>
+        <span class="main-label">■/■</span>
+        <span class="sub-label red">C</span>
+      </button>
+      <button class="btn btn-fn" data-code="SQRT" data-shift="CBRT" data-alpha="D">
+        <span class="sub-label yellow">³√</span>
+        <span class="main-label">√</span>
+        <span class="sub-label red">D</span>
+      </button>
+
+      <!-- Row 2 -->
+      <button class="btn btn-fn" data-code="SQR" data-shift="FACTOR" data-alpha="E">
+        <span class="sub-label yellow">x³</span>
+        <span class="main-label">x²</span>
+        <span class="sub-label red">E</span>
+      </button>
+      <button class="btn btn-fn" data-code="POWER" data-shift="NTH_ROOT" data-alpha="F">
+        <span class="sub-label yellow">ⁿ√</span>
+        <span class="main-label">x<sup>■</sup></span>
+        <span class="sub-label red">F</span>
+      </button>
+      <button class="btn btn-fn" data-code="LOG_BASE" data-shift="LOG10" data-alpha="X">
+        <span class="sub-label yellow">10<sup>x</sup></span>
+        <span class="main-label">log<sub>a</sub>b</span>
+        <span class="sub-label red">X</span>
+      </button>
+      <button class="btn btn-fn" data-code="LN" data-shift="EXP_E" data-alpha="Y">
+        <span class="sub-label yellow">e<sup>x</sup></span>
+        <span class="main-label">ln</span>
+        <span class="sub-label red">Y</span>
+      </button>
+
+      <!-- Row 3 -->
+      <button class="btn btn-fn" data-code="NEG" data-shift="ANGLE" data-alpha="M">
+        <span class="sub-label yellow">∠</span>
+        <span class="main-label">(-)</span>
+        <span class="sub-label red">M</span>
+      </button>
+      <button class="btn btn-fn" data-code="DMS" data-shift="FACT" data-alpha="">
+        <span class="sub-label yellow">x!</span>
+        <span class="main-label">° ' "</span>
+      </button>
+      <button class="btn btn-fn" data-code="HYP" data-shift="STO" data-alpha="">
+        <span class="sub-label yellow">STO</span>
+        <span class="main-label">hyp</span>
+      </button>
+      <button class="btn btn-fn" data-code="SIN" data-shift="ASIN" data-alpha="">
+        <span class="sub-label yellow">sin⁻¹</span>
+        <span class="main-label">sin</span>
+      </button>
+
+      <!-- Row 4 -->
+      <button class="btn btn-fn" data-code="COS" data-shift="ACOS" data-alpha="">
+        <span class="sub-label yellow">cos⁻¹</span>
+        <span class="main-label">cos</span>
+      </button>
+      <button class="btn btn-fn" data-code="TAN" data-shift="ATAN" data-alpha="">
+        <span class="sub-label yellow">tan⁻¹</span>
+        <span class="main-label">tan</span>
+      </button>
+      <button class="btn btn-fn" data-code="RCL" data-shift="RCL_MEM" data-alpha="">
+        <span class="sub-label yellow">RCL</span>
+        <span class="main-label">RCL</span>
+      </button>
+      <button class="btn btn-fn" data-code="ENG" data-shift="ENG_LEFT" data-alpha="I_UNIT">
+        <span class="sub-label yellow">←</span>
+        <span class="main-label">ENG</span>
+        <span class="sub-label red">i</span>
+      </button>
+
+      <!-- Row 5 -->
+      <button class="btn btn-fn" data-code="PAREN_L" data-shift="CONST" data-alpha=":">
+        <span class="sub-label yellow">CONST</span>
+        <span class="main-label">(</span>
+        <span class="sub-label red">:</span>
+      </button>
+      <button class="btn btn-fn" data-code="PAREN_R" data-shift="CONV" data-alpha=",">
+        <span class="sub-label yellow">CONV</span>
+        <span class="main-label">)</span>
+        <span class="sub-label red">,</span>
+      </button>
+      <button class="btn btn-fn" data-code="SD" data-shift="SD_MIX" data-alpha="">
+        <span class="sub-label yellow">a b/c</span>
+        <span class="main-label">S⇔D</span>
+      </button>
+      <button class="btn btn-fn" data-code="M_PLUS" data-shift="M_MINUS" data-alpha="M">
+        <span class="sub-label yellow">M-</span>
+        <span class="main-label">M+</span>
+        <span class="sub-label red">M</span>
+      </button>
+    </div>
+
+    <!-- Numeric & Basic Operator Keypad -->
+    <div class="numeric-keypad">
+      <!-- Row 1 -->
+      <button class="btn btn-num" data-val="7" data-shift="STAT_MENU">
+        <span class="sub-label yellow">STAT</span>
+        <span class="main-label">7</span>
+      </button>
+      <button class="btn btn-num" data-val="8" data-shift="CMPLX_MENU">
+        <span class="sub-label yellow">CMPLX</span>
+        <span class="main-label">8</span>
+      </button>
+      <button class="btn btn-num" data-val="9" data-shift="BASE_MENU">
+        <span class="sub-label yellow">BASE</span>
+        <span class="main-label">9</span>
+      </button>
+      <button class="btn btn-action btn-del" data-action="del">
+        <span class="sub-label yellow">INS</span>
+        <span class="main-label">DEL</span>
+      </button>
+      <button class="btn btn-action btn-ac" data-action="ac">
+        <span class="sub-label yellow">OFF</span>
+        <span class="main-label">AC</span>
+      </button>
+
+      <!-- Row 2 -->
+      <button class="btn btn-num" data-val="4" data-shift="MATRIX_MENU">
+        <span class="sub-label yellow">MATRIX</span>
+        <span class="main-label">4</span>
+      </button>
+      <button class="btn btn-num" data-val="5" data-shift="VECTOR_MENU">
+        <span class="sub-label yellow">VECTOR</span>
+        <span class="main-label">5</span>
+      </button>
+      <button class="btn btn-num" data-val="6">
+        <span class="main-label">6</span>
+      </button>
+      <button class="btn btn-op" data-op="*">
+        <span class="sub-label yellow">nPr</span>
+        <span class="main-label">×</span>
+      </button>
+      <button class="btn btn-op" data-op="/">
+        <span class="sub-label yellow">nCr</span>
+        <span class="main-label">÷</span>
+      </button>
+
+      <!-- Row 3 -->
+      <button class="btn btn-num" data-val="1" data-shift="SOLVE">
+        <span class="sub-label yellow">SOLVE</span>
+        <span class="main-label">1</span>
+      </button>
+      <button class="btn btn-num" data-val="2" data-shift="CALC">
+        <span class="sub-label yellow">CALC</span>
+        <span class="main-label">2</span>
+      </button>
+      <button class="btn btn-num" data-val="3">
+        <span class="main-label">3</span>
+      </button>
+      <button class="btn btn-op" data-op="+">
+        <span class="sub-label yellow">Pol</span>
+        <span class="main-label">+</span>
+      </button>
+      <button class="btn btn-op" data-op="-">
+        <span class="sub-label yellow">Rec</span>
+        <span class="main-label">-</span>
+      </button>
+
+      <!-- Row 4 -->
+      <button class="btn btn-num" data-val="0" data-shift="RND">
+        <span class="sub-label yellow">Rnd</span>
+        <span class="main-label">0</span>
+      </button>
+      <button class="btn btn-num" data-val="." data-shift="RAN_NUM" data-alpha="RAN_INT">
+        <span class="sub-label yellow">Ran#</span>
+        <span class="main-label">•</span>
+        <span class="sub-label red">RanInt</span>
+      </button>
+      <button class="btn btn-num" data-code="EXP10" data-shift="PI" data-alpha="E_CONST">
+        <span class="sub-label yellow">π</span>
+        <span class="main-label">×10<sup>x</sup></span>
+        <span class="sub-label red">e</span>
+      </button>
+      <button class="btn btn-num" data-code="ANS" data-shift="DRG">
+        <span class="sub-label yellow">DRG►</span>
+        <span class="main-label">Ans</span>
+      </button>
+      <button class="btn btn-action btn-equals" data-action="equals">
+        <span class="sub-label yellow">≈</span>
+        <span class="main-label">=</span>
+      </button>
+    </div>
+
+    <!-- Quick Utilities Bar -->
+    <div class="utils-bar">
+      <button id="btn-hist" class="util-btn">📋 Sejarah</button>
+      <button id="btn-const-menu" class="util-btn">⚛️ Pemalar (40)</button>
+      <button id="btn-conv-menu" class="util-btn">🔄 Penukaran (40)</button>
+      <button id="btn-reset" class="util-btn">⚙️ Reset</button>
+    </div>
+  </div>
+
+  <script src="math_engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
